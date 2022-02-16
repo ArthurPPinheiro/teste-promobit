@@ -1,0 +1,139 @@
+<?php
+
+namespace $CLASS_NAMESPACE$;
+
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Kris\LaravelFormBuilder\FormBuilder;
+use Modules\$STUDLY_NAME$\Entities\$STUDLY_NAME$;
+
+class $CLASS$ extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * @return Renderable
+     */
+    public function index()
+    {
+        $$LOWER_NAME$s = $STUDLY_NAME$::all();;
+
+        return view('$LOWER_NAME$::index', compact(['$LOWER_NAME$s']));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Renderable
+     */
+    public function create(FormBuilder $formBuilder)
+    {
+        $$LOWER_NAME$ = new $STUDLY_NAME$();
+
+        $form = $formBuilder->create('Modules\$STUDLY_NAME$\Form\$STUDLY_NAME$Form', [
+            'method' => 'POST',
+            'url' => url('admin/$LOWER_NAME$/store'),
+            'model' => $$LOWER_NAME$
+        ]);
+
+        return view('$LOWER_NAME$::create', compact('form'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return Renderable
+     */
+    public function store(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            DB::commit();
+
+            $$LOWER_NAME$ = $this->save(new $STUDLY_NAME$, $request);
+
+            Session::flash('type', 'success');
+            Session::flash('message', 'Item adicionado com sucesso');
+
+            return redirect()->route('Admin.$STUDLY_NAME$');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            Session::flash('type', 'error');
+            Session::flash('message', $th->getMessage());
+
+            return redirect()->route('Admin.$STUDLY_NAME$');
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     * @param int $id
+     * @return Renderable
+     */
+    public function edit(FormBuilder $formBuilder, $STUDLY_NAME$ $$LOWER_NAME$)
+    {
+        $form = $formBuilder->create('Modules\$STUDLY_NAME$\Form\$STUDLY_NAME$Form', [
+            'method' => 'PUT',
+            'url' => url('admin/$LOWER_NAME$/update/' . $$LOWER_NAME$->id),
+            'model' => $$LOWER_NAME$
+        ]);
+        return view('$LOWER_NAME$::edit', compact('form'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @param Request $request
+     * @param int $id
+     * @return Renderable
+     */
+    public function update(Request $request, $STUDLY_NAME$ $$LOWER_NAME$)
+    {
+        DB::beginTransaction();
+
+        try {
+            DB::commit();
+
+            $$LOWER_NAME$ = $this->save($$LOWER_NAME$, $request);
+
+            Session::flash('type', 'success');
+            Session::flash('message', 'Item editado com sucesso');
+
+            return redirect()->route('Admin.$STUDLY_NAME$');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            Session::flash('type', 'error');
+            Session::flash('message', $th->getMessage());
+
+            return redirect()->route('Admin.$STUDLY_NAME$');
+        }
+    }
+
+    public function save($STUDLY_NAME$ $$LOWER_NAME$, Request $request)
+    {
+
+        foreach ($$LOWER_NAME$->getFillable() as $fillable) {
+            $$LOWER_NAME$->$fillable = $request->input($fillable);
+        }
+
+        $$LOWER_NAME$->save();
+
+        return $$LOWER_NAME$;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * @param int $id
+     * @return Renderable
+     */
+    public function destroy($STUDLY_NAME$ $$LOWER_NAME$)
+    {
+        $$LOWER_NAME$->delete();
+
+        Session::flash('type', 'success');
+        Session::flash('message', 'Item deletado com sucesso');
+    }
+}

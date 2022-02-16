@@ -1,0 +1,64 @@
+
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    border-radius: 50%!important;
+}
+
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current,
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current:hover {
+    z-index: 3!important;
+    color: #ffffff!important;
+    border-color: #5e72e4!important;
+    background: #5e72e4!important;
+    box-shadow: 0 7px 14px rgb(50 50 93 / 10%), 0 3px 6px rgb(0 0 0 / 8%)!important;
+    border-radius: 50%;
+}
+
+.paginate_button.current:hover {
+    background: none !important;
+    border-radius: 50px;
+    background: #5e72e4 !important;
+    color:#ffffff !important
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    z-index: 3!important;
+    color: #ffffff !important;
+    border-color: #5e72e4!important;
+    background: #5e72e4!important;
+    box-shadow: 0 7px 14px rgb(50 50 93 / 10%), 0 3px 6px rgb(0 0 0 / 8%)!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    color: #ffffff!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover{
+    color: #5e72e4 !important;
+    border-color: none!important;
+    background: none!important;
+    box-shadow: none!important;
+    border: none!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.next:hover{
+    color: #5e72e4 !important;
+    border-color: none!important;
+    background: none!important;
+    box-shadow: none!important;
+    border: none!important;
+}
+
+table.dataTable.no-footer{
+    border-bottom: 1px solid #e9ecef!important;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate{
+    margin-bottom: 30px;
+}
+
+td {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 165px;
+}

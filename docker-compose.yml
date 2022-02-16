@@ -1,0 +1,46 @@
+version: '3'
+services:
+    app:
+        build:
+            context: ./.docker/8.0
+            dockerfile: Dockerfile
+        image: sail-8.0/app
+        ports:
+            - '80:80'
+        volumes:
+            - '.:/var/www/html'
+        depends_on:
+            - mysql
+            - phpmyadmin
+        links:
+            - mysql
+
+    mysql:
+      restart: always
+      image: 'mysql:8.0'
+      platform: linux/x86_64
+      ports:
+          - '5200:3306'
+      environment:
+          MYSQL_ROOT_PASSWORD: 'password'
+          MYSQL_DATABASE: 'promobit'
+          MYSQL_USER: 'user'
+          MYSQL_PASSWORD: 'password'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      volumes:
+          - 'promobit-mysql:/var/lib/mysql'
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping"]
+
+    phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      ports:
+        - "90:80"
+      links:
+        - mysql
+      environment:
+        - PMA_HOST=mysql
+
+volumes:
+  promobit-mysql:
+    driver: local

@@ -1,0 +1,35 @@
+<?php
+
+namespace Modules\$STUDLY_NAME$\Entities;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class $STUDLY_NAME$ extends Model
+{
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [ 'name', 'email' ];
+
+    protected $table = '$LOWER_NAME$';
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saved(function ($STUDLY_NAME$ $item) {
+
+        });
+
+        static::deleting(function ($STUDLY_NAME$ $item) {
+
+
+        });
+
+    }
+}

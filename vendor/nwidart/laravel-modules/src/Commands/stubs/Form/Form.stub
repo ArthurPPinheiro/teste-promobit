@@ -1,0 +1,14 @@
+<?php namespace Modules\$STUDLY_NAME$\Form;
+
+use Kris\LaravelFormBuilder\Form;
+
+class $STUDLY_NAME$Form extends Form
+{
+    public function buildForm()
+    {
+        $this
+            ->add('name', 'text')
+            ->add('email', 'text')
+            ->add('submit', 'submit', ['label' => 'Salvar', 'attr' => ['class' => 'btn btn-primary']]);
+    }
+}

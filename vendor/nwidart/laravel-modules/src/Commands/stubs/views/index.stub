@@ -1,0 +1,54 @@
+@extends('admin::layouts.app')
+
+@section('content')
+<div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">$STUDLY_NAME$</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <a href="{{ route('Admin.$STUDLY_NAME$.create') }}" class="btn btn-sm btn-primary">Criar</a>
+                </div>
+              </div>
+          </div>
+          <!-- Light table -->
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                    @foreach ((new Modules\$STUDLY_NAME$\Entities\$STUDLY_NAME$)->getFillable() as $fillable)
+                        <th scope="col" class="sort" data-sort="{{ Str::slug($fillable) }}">{{ $fillable }}</th>
+                    @endforeach
+                    <th class="text-center" scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody class="list">
+                @foreach ($$LOWER_NAME$s as $$LOWER_NAME$)
+                    <tr>
+                        @foreach ((new Modules\$STUDLY_NAME$\Entities\$STUDLY_NAME$)->getFillable() as $fillable)
+                            <td class="budget">
+                                {{ $$LOWER_NAME$->$fillable }}
+                            </td>
+                        @endforeach
+                        <td class="text-center nowrap">
+                            <a class="btn btn-icon-only text-blue" href="{{ route('Admin.$STUDLY_NAME$.edit', $$LOWER_NAME$) }}" aria-expanded="false">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-icon-only text-red" href="{{ route('Admin.$STUDLY_NAME$.delete', $$LOWER_NAME$) }}" aria-expanded="false">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+@endsection
