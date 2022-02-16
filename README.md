@@ -9,41 +9,41 @@ Como realizar o setup do projeto.
 Iniciar o docker:
 
 ```bash
-    docker compose up -d
+docker compose up -d
 ```
 
 Executar o bash:
 
 ```bash
-    docker compose exec app bash
+docker compose exec app bash
 ```
 
 Instalar os pacotes
 
 ```bash
-    composer install
+composer install
 ```
 
 ```bash
-    npm install
+npm install
 ```
 
 Gerar assets:
 
 ```bash
-    npm run prod
+npm run prod
 ```
 
 Executar migrations:
 
 ```bash
-    php artisan module:migrate
+php artisan module:migrate
 ```
 
 Executar os seeds:
 
 ```bash
-    php artisan module:seed
+php artisan module:seed
 ```
 
 
