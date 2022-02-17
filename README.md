@@ -46,8 +46,9 @@ Executar os seeds:
 php artisan module:seed
 ```
 
-### Login : admin@admin.com
-### Password : 123456
+### Access
+Login : admin@admin.com
+Password : 123456
 
 ## SQL Relevance Report
 
