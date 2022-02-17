@@ -29,6 +29,8 @@ class HomeController extends Controller
         // ) AS temp
         // RIGHT JOIN tag ON tag_id = id
 
+        $reports = array();
+
         $tags = Tag::all();
 
         foreach($tags as $tag) {

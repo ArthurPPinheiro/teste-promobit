@@ -46,23 +46,25 @@ Executar os seeds:
 php artisan module:seed
 ```
 
+### Login : admin@admin.com
+### Password : 123456
 
 ## SQL Relevance Report
 
 ```sql
-    SELECT
+SELECT
+        tag_id,
+        name,
+        products_count
+    FROM
+        (
+        SELECT
             tag_id,
-            name,
-            products_count
+            COUNT(product_id) AS products_count
         FROM
-            (
-            SELECT
-                tag_id,
-                COUNT(product_id) AS products_count
-            FROM
-                `product_tag`
-            GROUP BY
-                tag_id
-        ) AS temp
-        RIGHT JOIN tag ON tag_id = id
+            `product_tag`
+        GROUP BY
+            tag_id
+    ) AS temp
+    RIGHT JOIN tag ON tag_id = id
 ```

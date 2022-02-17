@@ -311,11 +311,16 @@ abstract class FormField
             if ($this->parent->clientValidationEnabled()) {
                 $this->setOption('attr.required', 'required');
             }
+
+            if (isset($parsedRules['required'])) {
+                unset($parsedRules['required']);
+            }
         }
 
         if ($this->parent->clientValidationEnabled() && $parsedRules) {
-            $attrs = $this->getOption('attr') + $parsedRules;
-            $this->setOption('attr', $attrs);
+            foreach($parsedRules as $rule => $param){
+                $this->setOption('attr.' . $rule, $param);
+            }
         }
 
         $this->setOption('wrapperAttrs', $helper->prepareAttributes($this->getOption('wrapper')));
@@ -531,9 +536,11 @@ abstract class FormField
         return [
             'wrapper' => ['class' => $this->getConfig('defaults.wrapper_class')],
             'attr' => ['class' => $this->getConfig('defaults.field_class')],
-            'help_block' => ['text' => null, 'tag' => 'p', 'attr' => [
-                'class' => $this->getConfig('defaults.help_block_class')
-            ]],
+            'help_block' => [
+                'text' => null,
+                'tag' => $this->getConfig('defaults.help_block_tag', 'p'),
+                'attr' => ['class' => $this->getConfig('defaults.help_block_class')],
+            ],
             'value' => null,
             'default_value' => null,
             'label' => null,
@@ -732,6 +739,18 @@ abstract class FormField
     }
 
     /**
+     * Whether this field is disabled.
+     *
+     * @return bool
+     */
+    public function isDisabled()
+    {
+        $disabled = $this->getOption('attr.disabled');
+
+        return $disabled !== null && $disabled !== false;
+    }
+
+    /**
      * Get validation rules for a field if any with label for attributes.
      *
      * @return array|null
@@ -770,7 +789,7 @@ abstract class FormField
      */
     public function getAllAttributes()
     {
-        return [$this->getNameKey()];
+        return $this->isDisabled() ? [] : [$this->getNameKey()];
     }
 
     /**

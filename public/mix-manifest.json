@@ -1,5 +1,6 @@
 {
     "/js/app.js": "/js/app.js",
+    "/adm/css/admin.css": "/adm/css/admin.css",
     "/img/apple-icon.png": "/img/apple-icon.png",
     "/img/bruce-mars.jpg": "/img/bruce-mars.jpg",
     "/img/btz.png": "/img/btz.png",
@@ -16,6 +17,5 @@
     "/img/team-2.jpg": "/img/team-2.jpg",
     "/img/team-3.jpg": "/img/team-3.jpg",
     "/img/team-4.jpg": "/img/team-4.jpg",
-    "/adm/js/admin.js": "/adm/js/admin.js",
-    "/adm/css/admin.css": "/adm/css/admin.css"
+    "/adm/js/admin.js": "/adm/js/admin.js"
 }
